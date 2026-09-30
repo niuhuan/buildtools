@@ -163,7 +163,7 @@ else
     endif
 
     UNAME_M := $(shell uname -m)
-    ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 amd64))
+    ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 amd64 arm64 aarch64))
         HOST_ARCH := x86_64
     else ifeq ($(UNAME_M),$(filter $(UNAME_M),i386 i686))
         HOST_ARCH := i686
@@ -384,7 +384,7 @@ else ifeq ($(TARGET_OS),3ds)
     endif
 
     LD_FLAGS += -specs=3dsx.specs
-    COMMON_CC_FLAGS += -mword-relocations -ffast-math -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft -DARM11 -D_3DS
+    COMMON_CC_FLAGS += -mword-relocations -ffast-math -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft -D__3DS__
 
     SERVEFILES := python $(BUILDTOOLS_DIR)/3ds/servefiles.py
 
